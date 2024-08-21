@@ -1,0 +1,50 @@
+@baseUrl = http://localhost:3000
+@email = test921@example.com
+@password = password123
+@contentType = application/json
+
+@token =eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2Iiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNzI0MTY0NzcwLCJleHAiOjE3MjQyNTExNzAsImp0aSI6ImE4ZWU5ZDczLTJiOGMtNGE1Mi04ZjU5LTRiNzQ1MWNkMzY0YyJ9.8JRie8NZ0TJ9j6uAUmOB255uZM1wt964cxT_SUBm8gs
+
+### Register a new user
+POST {{baseUrl}}/signup
+Content-Type: {{contentType}}
+
+{
+  "user": {
+    "email": "{{email}}",
+    "password": "{{password}}",
+    "password_confirmation": "{{password}}"
+  }
+}
+
+### Login
+# @name login
+POST {{baseUrl}}/login
+Content-Type: {{contentType}}
+
+{
+  "user": {
+    "email": "{{email}}",
+    "password": "{{password}}"
+  }
+}
+
+### Reset Password Request
+POST {{baseUrl}}/users/password
+Content-Type: {{contentType}}
+
+{
+  "user": {
+    "email": "{{email}}"
+  }
+}
+
+### Logout
+DELETE {{baseUrl}}/logout
+Authorization: Bearer {{login.response.body.token}}
+# Authorization: Bearer {{token}}
+
+### Get current user (protected route)
+GET {{baseUrl}}/api/v1/current
+Authorization: Bearer {{login.response.body.token}}
+
