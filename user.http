@@ -1,5 +1,5 @@
 @baseUrl = http://localhost:3000
-@email = test921@example.com
+@email = test@example.com
 @password = password123
 @contentType = application/json
 
