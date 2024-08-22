@@ -6,6 +6,7 @@ class Users::SessionsController < Devise::SessionsController
     if resource.persisted?
       token = current_token
       if token
+        response.headers['Authorization'] = "#{token}"
         render json: {
           status: { code: 200, message: 'Logged in successfully.' },
           data: ActiveModelSerializers::SerializableResource.new(resource, serializer: UserSerializer).as_json,
