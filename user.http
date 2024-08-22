@@ -1,6 +1,6 @@
 @baseUrl = http://localhost:3000
-@email = test@example.com
-@password = password123
+@email = tes1t@example.com
+@password = password12345
 @contentType = application/json
 
 @token =eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2Iiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNzI0MTY0NzcwLCJleHAiOjE3MjQyNTExNzAsImp0aSI6ImE4ZWU5ZDczLTJiOGMtNGE1Mi04ZjU5LTRiNzQ1MWNkMzY0YyJ9.8JRie8NZ0TJ9j6uAUmOB255uZM1wt964cxT_SUBm8gs
@@ -38,6 +38,22 @@ Content-Type: {{contentType}}
     "email": "{{email}}"
   }
 }
+
+### Change Password (authenticated user)
+PUT {{baseUrl}}/users/change_password
+Content-Type: {{contentType}}
+Authorization: Bearer {{login.response.body.token}}
+
+{
+
+  "user": {
+    "current_password": "{{password}}",
+    "password": "password1234",
+    "password_confirmation": "password1234"
+  }
+}
+
+
 
 ### Logout
 DELETE {{baseUrl}}/logout

@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  # devise_for :users, controllers: {
-  #   sessions: 'users/sessions',
-  #   registrations: 'users/registrations',
-  #   passwords: 'users/passwords'
-  # },
-
 
   devise_for :users, path: '', path_names: {
     sign_in: 'login',
@@ -17,6 +11,10 @@ Rails.application.routes.draw do
     passwords: 'users/passwords'
   },
   defaults: { format: :json }
+
+  devise_scope :user do
+    put 'users/change_password', to: 'users/passwords#change_password'
+  end
 
   namespace :api do
     namespace :v1 do
